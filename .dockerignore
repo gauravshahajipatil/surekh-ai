@@ -1,0 +1,10 @@
+node_modules
+.git
+.env
+*.zip
+server/data
+server/storage/uploads/*
+!server/storage/uploads/.gitkeep
+dist
+dist-server
+coverage

@@ -1,0 +1,16 @@
+export type Role = 'ADMIN' | 'ENGINEER' | 'SITE_SUPERVISOR' | 'CLIENT';
+export type User = { id: string; organizationId: string; name: string; email: string; role: Role };
+export type Project = { id: string; name: string; clientName: string; location: string; status: string; progress: number; budget: number; startDate?: string; endDate?: string; description?: string; updatedAt?: string };
+export type SafetyEvent = { id: string; projectId?: string; projectName: string; eventType: string; title: string; location: string; severity: string; status: string; occurredAt: string; reliability: number; riskScore: number; evidenceNote?: string };
+export type DocumentRecord = { id: string; projectId: string; projectName: string; name: string; category: string; version: number; visibility: string; status: string; mimeType?: string; sizeBytes?: number; createdAt: string; uploadedBy?: string };
+export type EstimateItem = { id?: string; description: string; category: string; unit: string; quantity: number; rate: number; amount?: number };
+export type Estimate = { id: string; projectId: string; projectName: string; title: string; status: string; taxRate: number; subtotal: number; taxAmount: number; total: number; items: EstimateItem[]; createdAt: string };
+export type Invoice = { id: string; projectId: string; projectName: string; invoiceNumber: string; clientName: string; amount: number; status: string; dueDate?: string; description?: string; createdAt: string };
+export type DailyReport = { id: string; projectId: string; projectName: string; title: string; reportDate: string; weather: string; workers: number; completedWork: string; blockers: string; safetyNotes: string; status: string; author?: string };
+export type Notification = { id: string; projectId?: string; projectName?: string; title: string; message: string; severity: string; readAt?: string | null; createdAt: string };
+export type Camera = { id: string; projectId?: string; projectName?: string; name: string; zone: string; status: string; reliability: number; healthNote?: string; lastFrameAt?: string | null };
+export type Intervention = { id: string; projectId: string; projectName: string; eventId?: string; title: string; recommendation: string; priority: string; status: string; ownerId?: string; ownerName?: string; riskBefore?: number | null; riskAfter?: number | null; outcomeNote?: string };
+export type DashboardData = { projects: Project[]; metrics: { projects: number; openEvents: number | null; highRisk: number | null; pendingReviews: number | null; invoicesDue: number }; events: SafetyEvent[]; cameras: Camera[]; recentReports: DailyReport[]; demo: boolean };
+export type TeamMember = { id: string; name: string; email: string; role: Role; status: string; projectCount: number; createdAt: string; lastLoginAt?: string };
+export type Experiment = { id: string; name: string; hypothesis: string; datasetVersion: string; baseline: string; status: string; metrics?: Record<string, unknown>; createdAt: string; updatedAt?: string };
+export type AuditRecord = { id: string; action: string; resourceType: string; resourceId: string; createdAt: string; actor?: string; details?: Record<string, unknown>; ipAddress?: string };
